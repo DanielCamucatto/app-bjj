@@ -3,11 +3,11 @@ name: github-pipeline
 on:
   push:
     branches:
-      - prod
+      - main
       - dev 
   pull_request:
     branches:
-      - prod
+      - main
       - dev
 
 jobs:
@@ -21,7 +21,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: '16'  # ou a versão que você está usando
+          node-version: '18'  
 
       - name: Install Dependencies
         run: yarn install
@@ -40,6 +40,9 @@ jobs:
           RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}  # Adicione a chave de API nos segredos do GitHub
         run: |
           # Comando para implantar no Render
-          # O comando específico vai depender da sua configuração no Render
-          # Por exemplo:
-          curl -X POST -H "Authorization: Bearer $RENDER_API_KEY" https://api.render.com/deploy/...  # Ajuste a URL conforme necessário
+          curl -X POST \
+            -H "Authorization: Bearer $RENDER_API_KEY" \
+            -H "Accept: application/json" \
+            -H "Content-Type: application/json" \
+            -d '{}' \
+            https://api.render.com/v1/services/srv-csa29prqf0us739pcr90/deploys
