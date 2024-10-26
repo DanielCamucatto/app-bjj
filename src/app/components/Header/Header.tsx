@@ -15,14 +15,14 @@ const Header = () => {
         <Link href="/" className="btn btn-primary-content normal-case text-sm">
           Home
         </Link>
-        <Link href="/about" className="btn btn-ghost normal-case text-sm">
+        <Link href="/about" className="btn btn-primary-content normal-case text-sm">
           About
         </Link>
-        <Link href="/contact" className="btn btn-ghost normal-case text-sm">
+        <Link href="/contact" className="btn btn-primary-content normal-case text-sm">
           Contact
         </Link>
-        <DarkModeToggle />
       </nav>
+    <DarkModeToggle />
 
       <MobileMenu />
     </header>
