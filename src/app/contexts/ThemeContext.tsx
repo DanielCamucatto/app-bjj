@@ -3,15 +3,15 @@
 import { createContext, useContext, useEffect, useState } from 'react'
 
 const ThemeContext = createContext({
-  theme: 'light',
+  theme: 'lofi',
   toggleTheme: () => {},
 })
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState('light')
+  const [theme, setTheme] = useState('lofi')
 
   const toggleTheme = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light'
+    const newTheme = theme === 'lofi' ? 'black' : 'lofi'
     setTheme(newTheme)
     document.documentElement.setAttribute('data-theme', newTheme)
   }

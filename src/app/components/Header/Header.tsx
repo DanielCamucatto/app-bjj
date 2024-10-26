@@ -1,5 +1,5 @@
 import Link from "next/link";
-import DarkModeToggle from "../Buttons/DarkModeToggle";
+import DarkModeToggle from "@/app/components/Buttons/DarkModeToggle";
 import MobileMenu from "./HeaderMobile";
 
 const Header = () => {
@@ -12,7 +12,7 @@ const Header = () => {
       </div>
 
       <nav className="hidden md:flex space-x-4 items-center">
-        <Link href="/" className="btn btn-ghost normal-case text-sm">
+        <Link href="/" className="btn btn-primary-content normal-case text-sm">
           Home
         </Link>
         <Link href="/about" className="btn btn-ghost normal-case text-sm">
