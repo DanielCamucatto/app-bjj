@@ -15,19 +15,19 @@ const MobileMenu = () => {
   return (
     <div className="md:hidden">
       <button onClick={toggleMenu}>
-        <HiMenu size={24}/>
+        <HiMenu size={24} className="text-primary"/>
       </button>
 
       {isOpen && (
-        <div className="absolute top-16 right-0 bg-base-100 shadow-lg rounded-box w-48 p-4">
+        <div className="absolute top-16 left-0 bg-base-100 shadow-lg rounded-box w-48 p-4">
           <nav className="flex flex-col space-y-2">
-            <Link href="/" className="btn btn-ghost normal-case text-sm" onClick={toggleMenu}>
+            <Link href="/" className="btn btn-primary-content normal-case text-sm" onClick={toggleMenu}>
               Home
             </Link>
-            <Link href="/about" className="btn btn-ghost normal-case text-sm" onClick={toggleMenu}>
+            <Link href="/about" className="btn btn-primary-content normal-case text-sm" onClick={toggleMenu}>
               About
             </Link>
-            <Link href="/contact" className="btn btn-ghost normal-case text-sm" onClick={toggleMenu}>
+            <Link href="/contact" className="btn btn-primary-content normal-case text-sm" onClick={toggleMenu}>
               Contact
             </Link>
             <DarkModeToggle />
