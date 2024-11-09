@@ -53,6 +53,14 @@ const MobileMenu = () => {
             >
               Benefícios
             </Link>
+            <Link
+              href="#contact"
+              className="btn btn-primary-content normal-case text-sm"
+              onClick={toggleMenu}
+              scroll={false}
+            >
+              Contato
+            </Link>
             <DarkModeToggle />
           </nav>
         </div>

@@ -26,6 +26,9 @@ const Header = () => {
           <Link href="#benefits" scroll={true} className="btn btn-primary-content normal-case text-sm">
             Benefícios
           </Link>
+          <Link href="#contact" scroll={true} className="btn btn-primary-content normal-case text-sm">
+            Contato
+          </Link>
         </nav>
 
         <div className="flex items-center gap-4">
