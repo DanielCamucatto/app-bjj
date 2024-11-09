@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
+// import Link from "next/link";
 import { HiMenu } from "react-icons/hi";
 import DarkModeToggle from "../Buttons/DarkModeToggle";
 
@@ -12,6 +12,14 @@ const MobileMenu = () => {
     setIsOpen(!isOpen);
   };
 
+  const handleNavClick = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+    toggleMenu(); // Fecha o menu após clicar
+  };
+
   return (
     <div className="md:hidden">
       <button onClick={toggleMenu}>
@@ -19,48 +27,38 @@ const MobileMenu = () => {
       </button>
 
       {isOpen && (
-        <div className="absolute top-16 left-0 bg-base-100 shadow-lg rounded-box w-48 p-4">
+        <div className="absolute top-16 left-0 bg-base-100 shadow-lg rounded-box w-48 p-4 z-50">
           <nav className="flex flex-col space-y-2">
-            <Link
-              href="#home"
+            <button
+              onClick={() => handleNavClick("home")}
               className="btn btn-primary-content normal-case text-sm"
-              scroll={false}
-              onClick={toggleMenu}
             >
               Home
-            </Link>
-            <Link
-              href="#about"
+            </button>
+            <button
+              onClick={() => handleNavClick("about")}
               className="btn btn-primary-content normal-case text-sm"
-              scroll={false}
-              onClick={toggleMenu}
             >
               Sobre
-            </Link>
-            <Link
-              href="#methodology"
+            </button>
+            <button
+              onClick={() => handleNavClick("methodology")}
               className="btn btn-primary-content normal-case text-sm"
-              onClick={toggleMenu}
-              scroll={false}
             >
               Metodologia
-            </Link>
-            <Link
-              href="#benefits"
+            </button>
+            <button
+              onClick={() => handleNavClick("benefits")}
               className="btn btn-primary-content normal-case text-sm"
-              onClick={toggleMenu}
-              scroll={false}
             >
               Benefícios
-            </Link>
-            <Link
-              href="#contact"
+            </button>
+            <button
+              onClick={() => handleNavClick("contact")}
               className="btn btn-primary-content normal-case text-sm"
-              onClick={toggleMenu}
-              scroll={false}
             >
               Contato
-            </Link>
+            </button>
             <DarkModeToggle />
           </nav>
         </div>

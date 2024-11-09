@@ -9,152 +9,128 @@ import Slider3 from "../../../../public/images/slide-3.jpeg";
 const Benefits = () => {
   const { theme } = useTheme();
   const [currentSlide, setCurrentSlide] = useState(1);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentSlide((prev) => {
-        const nextSlide = prev === 3 ? 1 : prev + 1;
-        const carousel = document.querySelector('.carousel');
-        if (carousel) {
-          carousel.scrollLeft = (nextSlide - 1) * carousel.clientWidth;
-        }
-        return nextSlide;
-      });
-    }, 5000);
+      if (!isModalOpen) {
+        setCurrentSlide((prev) => {
+          const nextSlide = prev === 3 ? 1 : prev + 1;
+          const carousel = document.querySelector('.carousel');
+          if (carousel) {
+            carousel.scrollLeft = (nextSlide - 1) * carousel.clientWidth;
+          }
+          return nextSlide;
+        });
+      }
+    }, 8000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [isModalOpen]);
+
+  const renderCard = (slide: number) => (
+    <div
+      id={`item${slide}`}
+      className="carousel-item w-full flex justify-center"
+    >
+      <div className="card bg-base-100 w-96 shadow-xl">
+        <figure>
+          <Image src={slide === 1 ? Slider1 : slide === 2 ? Slider2 : Slider3} alt="Benefícios Físicos" />
+        </figure>
+        <div className="card-body">
+          <h2
+            className={`card-title ${
+              theme === "black" ? "text-white" : "text-black"
+            }`}
+          >
+            Desenvolvimento {slide === 1 ? "Físico" : slide === 2 ? "Emocional e Psicologico" : "Social"}
+          </h2>
+          <div
+            className={` ${
+              theme === "black" ? "text-white" : "text-black"
+            }`}
+          >
+            <ul className="list-disc pl-5">
+              {slide === 1 ? (
+                <>
+                  <li>Coordenação motora</li>
+                  <li>Força e flexibilidade</li>
+                  <li>Conciência corporal</li>
+                </>
+              ) : slide === 2 ? (
+                <>
+                  <li>Aumento da autoconfiança</li>
+                  <li>Controle emocional</li>
+                  <li>Disciplina</li>
+                  <li>Foco</li>
+                </>
+              ) : (
+                <>
+                  <li>Respeito ao próximo</li>
+                  <li>Trabalho em equipe</li>
+                  <li>Valores éticos</li>
+                  <li>Autodefesa</li>
+                </>
+              )}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 
   return (
     <div className="hero bg-base-200 min-h-screen">
       <div className="hero-content flex-col lg:flex-row">
-        <div>
-          <h1 className={`text-5xl font-bold uppercase ${theme === "black" ? "text-white" : "text-black"}`}>
+        <div className="w-full max-w-4xl mx-auto">
+          <h1 className={`text-5xl font-bold uppercase text-center mb-8 ${theme === "black" ? "text-white" : "text-black"}`}>
             Benefícios
           </h1>
-          <div className="carousel w-full snap-x snap-mandatory">
-            <div
-              id="item1"
-              className="carousel-item w-full flex justify-center"
-            >
-              <div className="card bg-base-100 w-96 shadow-xl">
-                <figure>
-                  <Image src={Slider1} alt="Benefícios Físicos" />
-                </figure>
-                <div className="card-body">
-                  <h2
-                    className={`card-title ${
-                      theme === "black" ? "text-white" : "text-black"
-                    }`}
-                  >
-                    Desenvolvimento Físico
-                  </h2>
-                  <div
-                    className={` ${
-                      theme === "black" ? "text-white" : "text-black"
-                    }`}
-                  >
-                    <ul className="list-disc pl-5">
-                      <li>Coordenação motora</li>
-                      <li>Força e flexibilidade</li>
-                      <li>Conciência corporal</li>
-                    </ul>
-                  </div>
-                </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {[1, 2, 3].map((slideNum) => (
+              <div 
+                key={slideNum}
+                onClick={() => {
+                  setCurrentSlide(slideNum);
+                  setIsModalOpen(true);
+                }}
+                className="cursor-pointer hover:scale-105 transition-transform"
+              >
+                {renderCard(slideNum)}
               </div>
-            </div>
-            <div id="item2" className="carousel-item w-full flex justify-center">
-              <div className="card bg-base-100 w-96 shadow-xl">
-                <figure>
-                  <Image src={Slider2} alt="Benefícios Físicos" />
-                </figure>
-                <div className="card-body">
-                  <h2
-                    className={`card-title ${
-                      theme === "black" ? "text-white" : "text-black"
-                    }`}
-                  >
-                    Desenvolvimento Emocional e Psicologico
-                  </h2>
-                  <div
-                    className={` ${
-                      theme === "black" ? "text-white" : "text-black"
-                    }`}
-                  >
-                    <ul className="list-disc pl-5">
-                      <li>Aumento da autoconfiança</li>
-                      <li>Controle emocional</li>
-                      <li>Disciplina</li>
-                      <li>Foco</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div id="item3" className="carousel-item w-full flex justify-center">
-              <div className="card bg-base-100 w-96 shadow-xl">
-                <figure>
-                  <Image src={Slider3} alt="Benefícios Físicos" />
-                </figure>
-                <div className="card-body">
-                  <h2
-                    className={`card-title ${
-                      theme === "black" ? "text-white" : "text-black"
-                    }`}
-                  >
-                    Desenvolvimento Social
-                  </h2>
-                  <div
-                    className={` ${
-                      theme === "black" ? "text-white" : "text-black"
-                    }`}
-                  >
-                    <ul className="list-disc pl-5">
-                      <li>Respeito ao próximo</li>
-                      <li>Trabalho em equipe</li>
-                      <li>Valores éticos</li>
-                      <li>Autodefesa</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
-          <div className="flex w-full justify-center gap-2 py-2">
-            <a
-              href="#item1"
-              className={`btn btn-xs ${currentSlide === 1 ? "btn-active" : ""}`}
-              onClick={() => {
-                setCurrentSlide(1);
-                const carousel = document.querySelector('.carousel');
-                if (carousel) carousel.scrollLeft = 0;
-              }}
-            >
-              1
-            </a>
-            <a
-              href="#item2"
-              className={`btn btn-xs ${currentSlide === 2 ? "btn-active" : ""}`}
-              onClick={() => {
-                setCurrentSlide(2);
-                const carousel = document.querySelector('.carousel');
-                if (carousel) carousel.scrollLeft = carousel.clientWidth;
-              }}
-            >
-              2
-            </a>
-            <a 
-              href="#item3" 
-              className={`btn btn-xs ${currentSlide === 3 ? "btn-active" : ""}`}
-              onClick={() => {
-                setCurrentSlide(3);
-                const carousel = document.querySelector('.carousel');
-                if (carousel) carousel.scrollLeft = carousel.clientWidth * 2;
-              }}
-            >
-              3
-            </a>
-          </div>
+
+          <dialog id="benefits_modal" className={`modal ${isModalOpen ? 'modal-open' : ''}`}>
+            <div className="modal-box max-w-4xl">
+              <div className="carousel w-full">
+                {[1, 2, 3].map((slideNum) => (
+                  <div key={slideNum} id={`modal-item${slideNum}`} className="carousel-item w-full">
+                    {renderCard(slideNum)}
+                  </div>
+                ))}
+              </div>
+              
+              <div className="modal-action">
+                <div className="flex gap-2">
+                  {[1, 2, 3].map((slideNum) => (
+                    <button
+                      key={slideNum}
+                      className={`btn btn-xs ${currentSlide === slideNum ? 'btn-active' : ''}`}
+                      onClick={() => setCurrentSlide(slideNum)}
+                    >
+                      {slideNum}
+                    </button>
+                  ))}
+                </div>
+                <button className="btn" onClick={() => setIsModalOpen(false)}>Fechar</button>
+              </div>
+            </div>
+            <form method="dialog" className="modal-backdrop">
+              <button onClick={() => setIsModalOpen(false)}>close</button>
+            </form>
+          </dialog>
         </div>
       </div>
     </div>
