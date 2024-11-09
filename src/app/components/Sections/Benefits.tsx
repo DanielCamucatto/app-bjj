@@ -2,7 +2,9 @@
 import React from "react";
 import { useTheme } from "@/app/contexts/ThemeContext";
 import Image from "next/image";
-import BenefitsFisicImage from "../../../../public/images/beneficio-fisico.jpeg";
+import Slider1 from "../../../../public/images/slide-1.jpeg";
+import Slider2 from "../../../../public/images/slide-2.jpg";
+import Slider3 from "../../../../public/images/slide-3.jpeg";
 
 const Benefits = () => {
   const { theme } = useTheme();
@@ -18,10 +20,13 @@ const Benefits = () => {
             Benefícios
           </h1>
           <div className="carousel w-full">
-            <div id="item1" className="carousel-item w-full flex justify-center">
+            <div
+              id="item1"
+              className="carousel-item w-full flex justify-center"
+            >
               <div className="card bg-base-100 w-96 shadow-xl">
                 <figure>
-                  <Image src={BenefitsFisicImage} alt="Benefícios Físicos" />
+                  <Image src={Slider1} alt="Benefícios Físicos" />
                 </figure>
                 <div className="card-body">
                   <h2
@@ -36,38 +41,70 @@ const Benefits = () => {
                       theme === "black" ? "text-white" : "text-black"
                     }`}
                   >
-                    <ul>
-                      <li>
-                        Coordenação motora
-                      </li>
-                      <li>
-                        Força e flexibilidade
-                      </li>
-                      <li>
-                        Conciência corporal
-                      </li>
+                    <ul className="list-disc pl-5">
+                      <li>Coordenação motora</li>
+                      <li>Força e flexibilidade</li>
+                      <li>Conciência corporal</li>
                     </ul>
                   </div>
                 </div>
               </div>
             </div>
-            <div id="item2" className="carousel-item w-full">
-              <img
-                src="https://img.daisyui.com/images/stock/photo-1609621838510-5ad474b7d25d.webp"
-                className="w-full"
-              />
+            <div id="item2" className="carousel-item w-full flex justify-center">
+              <div className="card bg-base-100 w-96 shadow-xl">
+                <figure>
+                  <Image src={Slider2} alt="Benefícios Físicos" />
+                </figure>
+                <div className="card-body">
+                  <h2
+                    className={`card-title ${
+                      theme === "black" ? "text-white" : "text-black"
+                    }`}
+                  >
+                    Desenvolvimento Emocional e Psicologico
+                  </h2>
+                  <div
+                    className={` ${
+                      theme === "black" ? "text-white" : "text-black"
+                    }`}
+                  >
+                    <ul className="list-disc pl-5">
+                      <li>Aumento da autoconfiança</li>
+                      <li>Controle emocional</li>
+                      <li>Disciplina</li>
+                      <li>Foco</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div id="item3" className="carousel-item w-full">
-              <img
-                src="https://img.daisyui.com/images/stock/photo-1414694762283-acccc27bca85.webp"
-                className="w-full"
-              />
-            </div>
-            <div id="item4" className="carousel-item w-full">
-              <img
-                src="https://img.daisyui.com/images/stock/photo-1665553365602-b2fb8e5d1707.webp"
-                className="w-full"
-              />
+            <div id="item3" className="carousel-item w-full flex justify-center">
+              <div className="card bg-base-100 w-96 shadow-xl">
+                <figure>
+                  <Image src={Slider3} alt="Benefícios Físicos" />
+                </figure>
+                <div className="card-body">
+                  <h2
+                    className={`card-title ${
+                      theme === "black" ? "text-white" : "text-black"
+                    }`}
+                  >
+                    Desenvolvimento Social
+                  </h2>
+                  <div
+                    className={` ${
+                      theme === "black" ? "text-white" : "text-black"
+                    }`}
+                  >
+                    <ul className="list-disc pl-5">
+                      <li>Respeito ao próximo</li>
+                      <li>Trabalho em equipe</li>
+                      <li>Valores éticos</li>
+                      <li>Autodefesa</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <div className="flex w-full justify-center gap-2 py-2">
@@ -79,9 +116,6 @@ const Benefits = () => {
             </a>
             <a href="#item3" className="btn btn-xs">
               3
-            </a>
-            <a href="#item4" className="btn btn-xs">
-              4
             </a>
           </div>
         </div>
