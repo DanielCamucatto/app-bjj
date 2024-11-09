@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useTheme } from "@/app/contexts/ThemeContext";
 import Image from "next/image";
 import Slider1 from "../../../../public/images/slide-1.jpeg";
@@ -8,18 +8,31 @@ import Slider3 from "../../../../public/images/slide-3.jpeg";
 
 const Benefits = () => {
   const { theme } = useTheme();
+  const [currentSlide, setCurrentSlide] = useState(1);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => {
+        const nextSlide = prev === 3 ? 1 : prev + 1;
+        const carousel = document.querySelector('.carousel');
+        if (carousel) {
+          carousel.scrollLeft = (nextSlide - 1) * carousel.clientWidth;
+        }
+        return nextSlide;
+      });
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="hero bg-base-200 min-h-screen">
       <div className="hero-content flex-col lg:flex-row">
         <div>
-          <h1
-            className={`text-5xl font-bold uppercase ${
-              theme === "black" ? "text-white" : "text-black"
-            }`}
-          >
+          <h1 className={`text-5xl font-bold uppercase ${theme === "black" ? "text-white" : "text-black"}`}>
             Benefícios
           </h1>
-          <div className="carousel w-full">
+          <div className="carousel w-full snap-x snap-mandatory">
             <div
               id="item1"
               className="carousel-item w-full flex justify-center"
@@ -108,13 +121,37 @@ const Benefits = () => {
             </div>
           </div>
           <div className="flex w-full justify-center gap-2 py-2">
-            <a href="#item1" className="btn btn-xs">
+            <a
+              href="#item1"
+              className={`btn btn-xs ${currentSlide === 1 ? "btn-active" : ""}`}
+              onClick={() => {
+                setCurrentSlide(1);
+                const carousel = document.querySelector('.carousel');
+                if (carousel) carousel.scrollLeft = 0;
+              }}
+            >
               1
             </a>
-            <a href="#item2" className="btn btn-xs">
+            <a
+              href="#item2"
+              className={`btn btn-xs ${currentSlide === 2 ? "btn-active" : ""}`}
+              onClick={() => {
+                setCurrentSlide(2);
+                const carousel = document.querySelector('.carousel');
+                if (carousel) carousel.scrollLeft = carousel.clientWidth;
+              }}
+            >
               2
             </a>
-            <a href="#item3" className="btn btn-xs">
+            <a 
+              href="#item3" 
+              className={`btn btn-xs ${currentSlide === 3 ? "btn-active" : ""}`}
+              onClick={() => {
+                setCurrentSlide(3);
+                const carousel = document.querySelector('.carousel');
+                if (carousel) carousel.scrollLeft = carousel.clientWidth * 2;
+              }}
+            >
               3
             </a>
           </div>
