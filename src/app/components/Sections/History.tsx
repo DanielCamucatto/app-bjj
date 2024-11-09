@@ -3,6 +3,7 @@ import React from "react";
 import Image from "next/image";
 import { useTheme } from "@/app/contexts/ThemeContext";
 import Riello from "../../../../public/images/sensei rafael riello.jpeg";
+import Link from "next/link";
 
 const History = () => {
   const {theme}  = useTheme();
@@ -36,7 +37,9 @@ const History = () => {
              Barral, Wilson Bueno e membros da família Gracie. Essas experiências
              enriqueceram meu conhecimento e me inspiraram a buscar sempre mais.
           </p>
-          <button className="btn btn-info">Faça parte dessa historia</button>
+          <Link href="#contact" scroll={false} className="btn btn-info">
+            Entre em contato
+          </Link>
         </div>
       </div>
     </div>

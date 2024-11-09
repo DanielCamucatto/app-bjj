@@ -3,6 +3,7 @@ import React from "react";
 import Image from "next/image";
 import KidsBJJImage from "../../../../public/images/crianças-kimono.jpeg";
 import { useTheme } from "@/app/contexts/ThemeContext";
+import Link from "next/link";
 
 const Methodology = () => {
   const { theme } = useTheme();
@@ -74,7 +75,9 @@ const Methodology = () => {
               </ul>
             </div>
           </div>
-          <button className="btn btn-info">Saiba mais</button>
+          <Link href="#contact" scroll={false} className="btn btn-info">
+            Entre em contato
+          </Link>
         </div>
       </div>
     </div>

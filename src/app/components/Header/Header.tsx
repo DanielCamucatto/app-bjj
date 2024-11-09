@@ -14,14 +14,17 @@ const Header = () => {
         </div>
 
         <nav className="hidden md:flex space-x-4 items-center absolute left-1/2 transform -translate-x-1/2">
-          <Link href="/" className="btn btn-primary-content normal-case text-sm">
+          <Link href="#home" scroll={true} className="btn btn-primary-content normal-case text-sm">
             Home
           </Link>
-          <Link href="/about" className="btn btn-primary-content normal-case text-sm">
-            About
+          <Link href="#about" scroll={true} className="btn btn-primary-content normal-case text-sm">
+            Sobre
           </Link>
-          <Link href="/contact" className="btn btn-primary-content normal-case text-sm">
-            Contact
+          <Link href="#methodology" scroll={true} className="btn btn-primary-content normal-case text-sm">
+            Metodologia
+          </Link>
+          <Link href="#benefits" scroll={true} className="btn btn-primary-content normal-case text-sm">
+            Benefícios
           </Link>
         </nav>
 

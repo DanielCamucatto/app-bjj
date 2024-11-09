@@ -3,6 +3,7 @@ import React from "react";
 import HeroImage from "@/app/assets/images/hero-bjj.jpg"
 import Image from "next/image"
 import Logo from "@/app/assets/Icons/logo.svg"
+import Link from "next/link"
 
 const Hero = () => {
   return (
@@ -24,7 +25,9 @@ const Hero = () => {
           <p className="mb-5 bg-white p-2 text-black font-bold">
             PROFESSOR FAIXA PRETA
           </p>
-          <button className="btn btn-info">Saiba mais</button>
+          <Link href="#about" scroll={true} className="btn btn-info">
+            Saiba mais
+          </Link>
         </div>
       </div>
     </div>
