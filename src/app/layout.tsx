@@ -4,6 +4,8 @@ import { ThemeProvider } from "./contexts/ThemeContext";
 import "../app/styles/globals.css";
 import Header from "../app/components/Header/Header";
 import Footer from "@/app/components/Footer/Footer";
+import InstallPWA from "@/app/services/pwa";
+import ServiceWorkerRegistration from "../app/services/serviceWorker";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -21,6 +23,14 @@ export const metadata: Metadata = {
   description: "Página oficial do Rafael Riello BJJ",
   icons: {
     icon: '/favicon.ico',
+    apple: '/icon-192x192.png',
+  },
+  manifest: '/manifest.json',
+  themeColor: '#000000',
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1,
   },
 };
 
@@ -30,7 +40,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="pt-BR">
       <ThemeProvider>
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
@@ -38,6 +48,8 @@ export default function RootLayout({
           <Header />
           <main>{children}</main>
           <Footer />
+          <InstallPWA />
+          <ServiceWorkerRegistration />
         </body>
       </ThemeProvider>
     </html>
