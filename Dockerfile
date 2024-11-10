@@ -1,23 +1,48 @@
-# Usar uma imagem base do Node.js
-FROM node:18
+# Estágio de construção
+FROM node:18-alpine AS builder
 
-# Definir o diretório de trabalho
+# Definir diretório de trabalho
 WORKDIR /app
 
-# Copiar o package.json e o yarn.lock para o container
+# Instalar dependências do sistema necessárias
+RUN apk add --no-cache libc6-compat
+
+# Copiar arquivos de configuração
 COPY package.json yarn.lock ./
 
-# Instalar as dependências
-RUN yarn install
+# Instalar todas as dependências
+RUN yarn install --frozen-lockfile
 
-# Copiar o restante do código para o container
+# Copiar o resto dos arquivos
 COPY . .
+
+# Configurar variáveis de ambiente para build
+ENV NEXT_TELEMETRY_DISABLED 1
+ENV NODE_ENV production
 
 # Construir o projeto
 RUN yarn build
 
-# Expor a porta que o Next.js usará
+# Estágio de produção
+FROM node:18-alpine AS runner
+
+WORKDIR /app
+
+# Instalar apenas as dependências de produção
+COPY --from=builder /app/package.json /app/yarn.lock ./
+RUN yarn install --production --frozen-lockfile
+
+# Copiar build e arquivos públicos
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
+
+# Configurar variáveis de ambiente
+ENV NODE_ENV production
+ENV NEXT_TELEMETRY_DISABLED 1
+
+# Expor a porta
 EXPOSE 3000
 
-# Comando para rodar a aplicação
-CMD ["yarn", "dev"]
+# Comando para iniciar a aplicação
+CMD ["node", "server.js"]

@@ -1,16 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'standalone',
   swcMinify: true,
+  poweredByHeader: false,
+  reactStrictMode: true,
   experimental: {
-    optimizeCss: true,
+    optimizeCss: false,
   },
-  compiler: {
-    removeConsole: process.env.NODE_ENV === "production",
-  },
-  // Reduz o tamanho do bundle
-  webpack: (config) => {
-    config.optimization.minimize = true;
-    return config;
+  images: {
+    unoptimized: true,
   },
 };
 
