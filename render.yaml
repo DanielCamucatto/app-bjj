@@ -1,0 +1,14 @@
+# Exported from Render on 2024-11-10T00:38:18Z
+services:
+- type: web
+  name: app-bjj
+  runtime: docker
+  repo: https://github.com/DanielCamucatto/app-bjj
+  plan: free
+  envVars:
+  - key: PORT
+    sync: false
+  region: oregon
+  dockerContext: .
+  dockerfilePath: ./Dockerfile
+version: "1"
