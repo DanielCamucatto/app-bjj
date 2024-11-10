@@ -4,14 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "npm run clean && NODE_OPTIONS='--max_old_space_size=512' next build",
+    "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
-    "test": "jest",
-    "test:watch": "jest --watch",
-    "clean": "rm -rf .next && rm -rf node_modules/.cache"
+    "lint": "next lint"
   },
   "dependencies": {
     "daisyui": "^4.12.13",
