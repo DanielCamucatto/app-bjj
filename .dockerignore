@@ -1,6 +1,7 @@
+.git
+.next
 node_modules
-build
+.env*
 .dockerignore
 Dockerfile
-package-lock.json
 README.md
